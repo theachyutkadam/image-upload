@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    @users = User.all.with_attached_images
   end
 
   # GET /users/1 or /users/1.json
@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
+    # @user.images.attach(params[:user][:images])
 
     respond_to do |format|
       if @user.save
@@ -65,6 +66,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:email, :password, :contact, :first_name, :last_name)
+      params.require(:user).permit(:email, :password, :contact, :first_name, :last_name, :images)
     end
 end

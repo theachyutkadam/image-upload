@@ -6,6 +6,15 @@
   <% @users.each do |user| %>
     <%= render user %>
     <p>
+      <% user.images.each do |image| %>
+        <strong>Images:</strong>
+        <%= image_tag user.images.variant(resize: "500x500")%>
+        <%= image_tag(url_for(image.image)) %>
+        <%#= user.images %>
+      <% end %>
+    </p>
+
+    <p>
       <%= link_to "Show this user", user %>
     </p>
   <% end %>
