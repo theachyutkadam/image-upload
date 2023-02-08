@@ -1,19 +1,19 @@
 <div id="<%= dom_id user %>">
-  <p>
+<!--   <p>
     <strong>Email:</strong>
-    <%= user.email %>
+    <%#= user.email %>
   </p>
 
   <p>
     <strong>Password:</strong>
-    <%= user.password %>
+    <%#= user.password %>
   </p>
 
   <p>
     <strong>Contact:</strong>
-    <%= user.contact %>
+    <%#= user.contact %>
   </p>
-
+ -->
   <p>
     <strong>First name:</strong>
     <%= user.first_name %>
@@ -27,7 +27,31 @@
   <p>
     <strong>Images:</strong>
     <%#= image_tag user.images, style: "width: 200px; display: block" %>
-    <%= user.images %>
+    <p>
+      <% user.images.each do |image| %>
+        <strong>Images:</strong>
+        <%#= image_tag user.images.variant(resize: "500x500")%>
+        <%= image_tag(url_for(image), style: 'height:250px;width:250px;') %>
+        <%#= user.images %>
+      <% end %>
+    </p>
+
+     <div class="row">
+       <aside class="span4">
+         <section>
+           <h1>
+             <%= user.last_name %>
+           </h1>
+           <div id="viewer"></div>
+           <%#= javascript_include_tag "three.min"     %>
+           <%#= javascript_include_tag "STLLoader"     %>
+           <%#= javascript_include_tag "TypedGeometry" %>
+           <%#= javascript_include_tag "Detector"      %>
+           <%#= javascript_include_tag "stats.min"     %>
+           <%#= javascript_include_tag "render_file"   %>
+        </section>
+       </aside>
+    </div>
   </p>
 
 </div>
